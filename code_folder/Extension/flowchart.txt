@@ -1,0 +1,42 @@
+1. Importing the packages
+2. Exploring the dataset 
+	- CIC-IDS 2018
+3. Data processing
+	- pandas dataframe
+	- Keras Dataframe
+	- Dropping unwanted column
+4. Visualization using seaborn & matplotlib
+5. Label Encoding using LabelEncoder
+6. Feature Selection 
+	- SelectPercentile using Mutual Info Classify
+7. Splitting the data to train and test for Deep LEarning 
+8. Building the model
+
+	- CNN 
+	- DNN
+	- BiLSTM (BEiT)
+	- CNN + LSTM
+
+9. Training and Building the model
+
+Flask Framework
+----------------
+ 
+10. Flask Framework with Sqlite for signup and signin
+11. Importing the packages
+12. User gives input as Feature Values 
+13. The given input is preprocessed for prediction
+14. Trained model is used for prediction
+15. Final outcome is displayed through frontend
+
+Dataset:
+https://www.kaggle.com/datasets/solarmainframe/ids-intrusion-csv
+
+
+Extension
+----------
+
+In the base paper the author mentioned to use different  Dataset for analysis with Deep learning like CNN, DNN and BiLSTM  models, in which CNN got 99% of accuracy
+As an extension we applied an ensemble method  combining the predictions of multiple individual models to produce a more robust and accurate final prediction.
+However, we can further enhance the performance by exploring other ensemble techniques such as CNN + LSTM  got 100% of accuracy 
+As an extension we can build the front end using the flask framework for user testing and with user authentication.
