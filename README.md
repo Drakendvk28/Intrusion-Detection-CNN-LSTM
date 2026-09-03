@@ -1,60 +1,59 @@
-# Network Intrusion Detection System (CNN-LSTM)
+# Network Intrusion Detection System (NIDS)
 
-A CNN-LSTM based Network Intrusion Detection System (NIDS) with a stacking
-ensemble classifier and a Flask web interface for real-time, secure model
-interaction.
+A deep learning based Network Intrusion Detection System with a Flask web
+interface for user authentication and real-time traffic classification.
 
-<!-- Add a screenshot once you have one:
-![Dashboard](screenshots/dashboard.png)
--->
-
+![Homepage](screenshots/homepage.png)
+![Signup](screenshots/signup.png)
+![Results](screenshots/results.png)
 ## Overview
 
-This project detects malicious network traffic by combining deep learning
-(CNN-LSTM) feature extraction with a stacking ensemble of classical models
-(ExtraTrees, LinearSVC, Logistic Regression). To address class imbalance in
-intrusion datasets, it uses CDAAE-KNN synthetic data augmentation before
-training.
+This project classifies network flow data as benign or malicious, comparing
+four deep learning architectures trained on the **CSE-CIC-IDS2018** dataset.
+Ten flow-level features (packet length statistics, inter-arrival times,
+segment sizes, etc.) are extracted per connection and fed into each model
+for binary classification.
 
-## Results
+## Models Compared
 
-| Dataset   | Metric              | Score  |
-|-----------|----------------------|--------|
-| KDD-CUP   | F1-score             | 98.9%  |
-| UNSW-NB15 | Accuracy             | 99.6%+ |
-| —         | F1 improvement vs. baseline SVM | +10.7% |
+| Model                | Accuracy | Precision | Recall | F1-Score |
+|-----------------------|----------|-----------|--------|----------|
+| CNN                   | 0.971    | 0.972     | 0.971  | 0.971    |
+| Deep Neural Network   | 0.993    | 0.993     | 0.993  | 0.993    |
+| BiLSTM                | 0.996    | 0.996     | 0.996  | 0.996    |
+| CNN + LSTM            | 1.000    | 0.972     | 0.972  | 0.972    |
 
 ## Architecture
 
-- **Feature extraction:** CNN-LSTM
-- **Classification:** Stacking ensemble — ExtraTrees + LinearSVC + Logistic Regression
-- **Class imbalance handling:** CDAAE-KNN synthetic data augmentation
-- **Web interface:** Flask, with SQLite-backed user authentication for secure,
-  real-time model interaction
+- **Feature set:** 10 selected flow features (Fwd/Bwd packet length stats,
+  Flow IAT Std, Packet Size Avg, Subflow Fwd Bytes, etc.)
+- **Models trained:** Dense Neural Network, BiLSTM, CNN, and a combined
+  CNN+LSTM architecture, each evaluated on accuracy, precision, recall, and F1
+- **Web interface:** Flask, with SQLite-backed user authentication
+  (signup/login with OTP verification)
 
 ## Tech Stack
 
-Python · Pandas · Scikit-learn · Flask · SQLite
+Python · TensorFlow / Keras · Scikit-learn · Pandas · Flask · SQLite
 
 ## Getting Started
 
 ```bash
 git clone https://github.com/Drakendvk28/Intrusion-Detection-CNN-LSTM.git
-cd Intrusion-Detection-CNN-LSTM
+cd Intrusion-Detection-CNN-LSTM/code_folder/Extension
+
+# activate your virtual environment
+tfenv\Scripts\activate      # Windows
+
 pip install -r requirements.txt
 python app.py
 ```
 
-Then open `http://localhost:5000` in your browser.
+Then open `http://127.0.0.1:5000` in your browser.
 
-> Adjust the commands above if your actual folder structure or entry-point
-> filename is different — update this section to match how you run the
-> project locally.
+## Dataset
 
-## Datasets
-
-- [KDD-CUP](http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html)
-- [UNSW-NB15](https://research.unsw.edu.au/projects/unsw-nb15-dataset)
+- [CSE-CIC-IDS2018](https://www.unb.ca/cic/datasets/ids-2018.html)
 
 ## Author
 
